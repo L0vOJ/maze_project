@@ -164,9 +164,9 @@ block** root_pruning(block** field,int width){
 	int arrange_y;
 	while(pruning_state){
 		pruning_state=0;
-		for(int y=2;y<width-2;y+=2){                //Çà, ¿­¿¡ ÆòÇàÇÏ°Ô »Ì¾Ò´Âµ¥, ´ë°¢¼±À¸·Î °Ë»öÇØº¸µµ·Ï ÇÏÀÚ
+		for(int y=2;y<width-2;y+=2){              
 			for(int x=2;x<width-2;x+=2){
-				arrange_y = 2 + (y+x-4)%(width-3);          //len-3 =14 -- %ÃÖ´ë=13
+				arrange_y = 2 + (y+x-4)%(width-3);     
 				if(field[arrange_y][x].root==0){
 					field = root_plus(arrange_y,x,field);
 					pruning_state++;
@@ -303,17 +303,17 @@ block** void_pruning(block** field,int width){
 	return field;
 }
 
-block** void_plus(int y,int x,block**field,int width){   //me.path==1, »óÅÂÇÑÅ× °ªÁÖ°í ±×³ð ÁÖº¯ Åë·Î °ª ÀçÁ¶Á¤
+block** void_plus(int y,int x,block**field,int width){  
 	int dice,surround=0;
-	dice=(rand()%4);                    //printf("%d",dice);
+	dice=(rand()%4);                  
 	for(int z=0;z<4;z++){
 		switch(dice){
-			case 0:{    //up
-				if(y!=1){      //printf("%d,%d/",a,b);            //printf("%d ",dice);
-					if(field[y-2][x].path==1){      //printf("in to%d",dice);
+			case 0:{    
+				if(y!=1){      
+					if(field[y-2][x].path==1){      
 						up.wall=0;
 						me.path=1;
-						void_chain(y,x,field);      //void_check(maze);      //wall_check(maze);
+						void_chain(y,x,field);    
 						return field;
 					}
 					if(up.wall==1){
@@ -326,11 +326,11 @@ block** void_plus(int y,int x,block**field,int width){   //me.path==1, »óÅÂ�
 				dice++;
 			}break;
 			case 1:{  //right
-				if(x!=(width-2)){        //printf("%d,%d/",a,b);      //printf("%d ",dice);
-					if(field[y][x+2].path==1){    //printf("in to%d",dice);
+				if(x!=(width-2)){       
+					if(field[y][x+2].path==1){    
 						right.wall=0;
 						me.path=1;
-						void_chain(y,x,field);    //        void_check(maze);      //      wall_check(maze);
+						void_chain(y,x,field);   
 						return field;
 					}
 					if(right.wall==1){
@@ -343,11 +343,11 @@ block** void_plus(int y,int x,block**field,int width){   //me.path==1, »óÅÂ�
 				dice+=2;
 			}break;
 			case 2:{  //down
-				if(y!=(width-2)){      //    printf("%d,%d/",a,b);            //    printf("%d ",dice);
-					if(field[y+2][x].path==1){      //      printf("in to%d",dice);
+				if(y!=(width-2)){     
+					if(field[y+2][x].path==1){     
 						down.wall=0;
 						me.path=1;
-						void_chain(y,x,field);      //      void_check(maze);      //      wall_check(maze);
+						void_chain(y,x,field);      
 						return field;
 					}
 					if(down.wall==1){
@@ -360,11 +360,11 @@ block** void_plus(int y,int x,block**field,int width){   //me.path==1, »óÅÂ�
 				dice-=2;
 			}break;
 			case 3:{  //left
-				if(x!=1){    //      printf("%d,%d/",a,b);    //      printf("%d ",dice);
-					if(field[y][x-2].path==1){    //        printf("in to%d",dice);
+				if(x!=1){    
+					if(field[y][x-2].path==1){    
 						left.wall=0;
 						me.path=1;
-						void_chain(y,x,field);      //      void_check(maze);      //      wall_check(maze);
+						void_chain(y,x,field);      
 						return field;
 					}
 					if(left.wall==1){
