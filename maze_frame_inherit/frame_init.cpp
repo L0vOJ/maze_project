@@ -3,7 +3,6 @@
 #include <cstring>
 #include <string>
 #include <math.h>
-#include <ctime> //C++
 #include "main_frame.h"
 
 using namespace std;
@@ -32,24 +31,19 @@ int* roll();
 void change(int* arr);
 int connection(int a,int b, int level,int direction,block**maze);
 
+
 mazeframe::mazeframe(){
-	time_t timer = time(NULL); // 1970년 1월 1일 0시 0분 0초부터 시작하여 현재까지의 초
-  t = localtime(&timer);
 	width=5;
 	width = width*4+1;
-	mode = 0;
+	mode = 1;
 	field = field_make(field,width);
-	this->solve_clear();
 }
 
 mazeframe::mazeframe(int argc,char** argv){
-	time_t timer = time(NULL); // 1970년 1월 1일 0시 0분 0초부터 시작하여 현재까지의 초
-  t = localtime(&timer);
 	width=5;
 	width = width*4+1;
-	mode = (argc>1)?(strcmp(argv[1],"-w")?0:1):0;
+	mode = (argc>1)?(strcmp(argv[1],"-n")?1:0):1;
 	field = field_make(field,width);
-	this->solve_clear();
 }
 
 block** field_make(block** field,int width){
@@ -81,6 +75,7 @@ block** block_init(int width){
 }
 
 block** rand_wall(block** field,int width){
+	srand(time(0));
 	int x,y,tap=0;
 	while(1){
 		x=(1+rand()%(width-2));             
@@ -158,6 +153,7 @@ block** root_chain(int y,int x,block**field){
 }
 
 block** root_pruning(block** field,int width){
+	srand(time(0));
 	int pruning_state=1;
 	int arrange_y;
 	while(pruning_state){
@@ -243,6 +239,7 @@ block** void_chain(int y,int x,block**field){
 }
 
 block** void_pruning(block** field,int width){
+	srand(time(0));
 	int pruning_state=1;
 	int arrange_y;
 	while(pruning_state){

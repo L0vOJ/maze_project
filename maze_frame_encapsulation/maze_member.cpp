@@ -3,6 +3,7 @@
 #include <cstring>
 #include <string>
 #include <math.h>
+#include <ctime> //C++
 #include "main_frame.h"
 
 using namespace std;
@@ -17,29 +18,35 @@ using namespace std;
 #define ct_void_width ((width-1)/2) 
 
 void mazeframe::set_block(block** field){
-	this->field = field;
+  this->field = field;
 }
 block** mazeframe::get_block(){
-	return field;
+  return field;
+}
+
+int mazeframe::get_width(){
+  return width;
+}
+
+void mazeframe::show_timelog(){
+  cout<<(t->tm_year + 1900)<<"-"<<t->tm_mon + 1<<"-"<<t->tm_mday<<" "<<t->tm_hour<<":"<<t->tm_min<<":"<<t->tm_sec<<endl;
 }
 
 void mazeframe::field_clear(){
-	this->wall_clear();
-	this->root_clear();
-	this->path_clear();
-	this->cline_clear();
+  free(field);
 }
 
 void mazeframe::solve_clear(){
-	this->path_clear();
-	this->cline_clear();
-	escape_step = 0;
+  this->root_clear();
+  this->path_clear();
+  this->cline_clear();
+  escape_step = 0;
 }
 
 void mazeframe::wall_clear(){
-  for(int y=0;y<width;y++){
-    for(int x=0;x<width;x++){
-      me.wall=0;
+  for(int y=1;y<width-1;y++){
+    for(int x=1;x<width-1;x++){
+     me.wall=0;
     }
   } 
 }
@@ -63,11 +70,12 @@ void mazeframe::path_clear(){
 void mazeframe::cline_clear(){
   for(int y=0;y<width;y++){
     for(int x=0;x<width;x++){
-      me.cline=0;
+     me.cline=0;
     }
   } 
 }
-/*
-void mazeframe::reroll(){
 
-}*/
+void mazeframe::regen(){
+  this->field_clear();
+  field = field_make(field,width);
+}

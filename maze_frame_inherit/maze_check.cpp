@@ -6,7 +6,7 @@
 #include "main_frame.h"
 using namespace std;
 
-void mazeframe::checkfield(){
+void mazeframe::ckeckfield(){
 	string wallicon;
 	for(int y=0;y<width;y++){
 		for(int x=0;x<width;x++){
@@ -17,7 +17,7 @@ void mazeframe::checkfield(){
 	}
 }
 
-void mazeframe::path_check(){
+void maze_solver::solution_check(){
   for(int y=0;y<width;y++){
     for(int x=0;x<width;x++){
       if(me.wall){
@@ -34,27 +34,6 @@ void mazeframe::path_check(){
   }
 }
 
-void mazeframe::path_check_num(){
-  for(int y=0;y<width;y++){
-    for(int x=0;x<width;x++){
-      if(me.wall){
-        printf("■ ");
-      }
-      else if(me.cline&&y%2&&x%2){
-        cout<<me.path%100;
-        if(me.path<10) cout<<" ";
-      }
-      else{
-        printf("  ");
-      }
-    }
-    printf("\n");
-  }
+int maze_solver::get_escape_step(){
+	return escape_step;
 }
-
-
-/*
-int mazeframe::get_escape_step(){
-	return mazeframe;
-}
-*/

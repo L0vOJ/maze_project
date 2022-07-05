@@ -11,16 +11,26 @@ using namespace std;
 #define ct_wall_width ((width-3)/2) 
 #define ct_void_width ((width-1)/2) 
 
+block** path_clear(block**field,int width);
 block** path_search(int y,int x,block**field);
 block** path_find(int y,int x,block**field);
 
-void mazeframe::path_solve(){
-  this->solve_clear();
-  field[1][1].path=1;
-  field = path_search(1,1,field);//path_check(field);
-  field[width-2][width-2].cline=1;//width-2¼­ºÎÅÍ ½ÃÀÛ
-  field = path_find(width-2,width-2,field);
-  escape_step = field[width-2][width-2].path;
+maze_solver::maze_solver(int argc, char** argv) : mazeframe(argc,argv){
+	field = path_clear(field,width);
+	field[1][1].path=1;
+	field = path_search(1,1,field);//path_check(field);
+	field[width-2][width-2].cline=1;//width-2¼­ºÎÅÍ ½ÃÀÛ
+	field = path_find(width-2,width-2,field);
+	escape_step = field[width-2][width-2].path;
+}
+
+block** path_clear(block**field,int width){ //new!!
+  for(int y=0;y<width;y++){
+    for(int x=0;x<width;x++){
+      me.path=0;
+    }
+  }
+  return field;
 }
 
 block** path_search(int y,int x,block**field){//new!!
