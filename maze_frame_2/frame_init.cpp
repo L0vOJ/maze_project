@@ -33,8 +33,15 @@ void change(int* arr);
 int connection(int a,int b, int level,int direction,block**maze);
 
 mazeframe::mazeframe(){
+	struct tm* lt;
 	time_t timer = time(NULL); // 1970년 1월 1일 0시 0분 0초부터 시작하여 현재까지의 초
-  t = localtime(&timer);
+  lt = localtime(&timer);
+  t.year = lt->tm_year+1900;
+  t.month = lt->tm_mon+1;
+  t.day = lt->tm_mday;
+  t.hour = lt->tm_hour;
+  t.min = lt->tm_min;
+  t.sec = lt->tm_sec;
 	width=5;
 	width = width*4+1;
 	mode = 0;
@@ -43,8 +50,15 @@ mazeframe::mazeframe(){
 }
 
 mazeframe::mazeframe(int argc,char** argv){
+	struct tm* lt;
 	time_t timer = time(NULL); // 1970년 1월 1일 0시 0분 0초부터 시작하여 현재까지의 초
-  t = localtime(&timer);
+  lt = localtime(&timer);
+  t.year = lt->tm_year+1900;
+  t.month = lt->tm_mon+1;
+  t.day = lt->tm_mday;
+  t.hour = lt->tm_hour;
+  t.min = lt->tm_min;
+  t.sec = lt->tm_sec;
 	width=5;
 	width = width*4+1;
 	mode = (argc>1)?(strcmp(argv[1],"-w")?0:1):0;

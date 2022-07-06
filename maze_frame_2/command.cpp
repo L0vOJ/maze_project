@@ -43,40 +43,43 @@ void command::navigate(int input){
 		case 1:{
 			cout<<"this is 1"<<endl;
 			cout<<"maze_generate"<<endl;
-			dm = new mazeframe;
+			mazeframe* mnew = new mazeframe;
+			dm.push_back(mnew);
 			cout<<"press any key to exit"<<endl;
 			getch();
 		}break;
 		case 2:{
 			cout<<"this is 2"<<endl;
 			cout<<"maze_check"<<endl;
-			dm->checkfield();
-			dm->get_width();
+			dm.at(dm.size()-1)->checkfield();
 			cout<<"press any key to exit"<<endl;
 			getch();
 		}break;
 		case 3:{
 			cout<<"this is 3"<<endl;
 			cout<<"maze_solve&_path_check"<<endl;
-			dm->path_solve();
-			dm->path_check();
+			dm.at(dm.size()-1)->path_solve();
+			dm.at(dm.size()-1)->path_check();
 			cout<<"press any key to exit"<<endl;
 			getch();
 		}break;
 		case 4:{
 			cout<<"this is 4"<<endl;
 			cout<<"maze_timecheck"<<endl;
-			dm->show_timelog();
+			dm.at(dm.size()-1)->show_timelog();
 			cout<<"press any key to exit"<<endl;
 			getch();
 		}break;
 		case 5:{
 			cout<<"this is 5"<<endl;
+			cout<<"maze_logfile_browse"<<endl;
+			this->log_show();
 			cout<<"press any key to exit"<<endl;
 			getch();
 		}break;
 		case 6:{
 			cout<<"this is 6"<<endl;
+			dm.at(0)->checkfield();
 			cout<<"press any key to exit"<<endl;
 			getch();
 		}break;
@@ -106,5 +109,13 @@ void command::navigate(int input){
 			getch();
 		}break;
 		default: break;
+	}
+}
+
+
+void command::log_show(){
+	for(int zz=0;zz<dm.size();zz++){
+		cout<<zz<<".";
+		dm.at(zz)->show_timelog();
 	}
 }

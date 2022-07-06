@@ -10,12 +10,21 @@ typedef struct{
 	int cline;
 }block;
 
+typedef struct{
+	int year;
+	int month;
+	int day;
+	int hour;
+	int min;
+	int sec;
+}tlog;
+
 class mazeframe
 {
 private:
 	block** field;
 	int escape_step;
-	tm* t;
+	tlog t;
 protected:
 	int width;
 	int mode;
@@ -60,10 +69,10 @@ public:
 	void step(int decision);
 	~play_maze();
 };
-
-class data_manage{	//로그 관리 시스템으로 만들 예정 
+/*
+class data_manage{	//로그 관리 시스템으로 만들 예정 //stl vector 걍 써도 되지만 이번엔 조잡해도 내가 직접 만들어본다
 private:
-	std::vector<mazeframe> vec;
+	mazeframe* chunk;
 public:
 	data_manage();
 
@@ -75,18 +84,20 @@ public:
 	//void get_data();
 	//void set_data();
 };
-
+*/
 class command{	// real time amulate 모듈 // 파일 관리 모듈은 하위로 둔다 { : public data_manage }
 private:
 	int* keybind;
-	mazeframe* dm;
+	//mazeframe* dm;
 	//data_manage* dm;
+	std::vector<mazeframe*> dm;
 public:
 	command();
 	void run();
 	void navigate(int input);
 	int keybinding(char key);
 	//void setKeyBind();
+	void log_show();
 };
 
 

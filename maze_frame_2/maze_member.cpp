@@ -29,7 +29,13 @@ int mazeframe::get_width(){
 }
 
 void mazeframe::show_timelog(){
-  cout<<(t->tm_year + 1900)<<"-"<<t->tm_mon + 1<<"-"<<t->tm_mday<<" "<<t->tm_hour<<":"<<t->tm_min<<":"<<t->tm_sec<<endl;
+  cout<<t.year<<"-";
+  cout<<(t.month+1)<<"-";
+  cout<<t.day<<" ";
+  cout<<t.hour<<":";
+  cout<<t.min<<":";
+  cout<<t.sec<<endl;
+  //cout<<t<<endl;
 }
 
 void mazeframe::field_clear(){
