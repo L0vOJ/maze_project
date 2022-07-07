@@ -12,4 +12,4 @@
     maze_play|new file|open log|open file|
     snake_game|---|---|---|
     save_log|---|---|---|
-
+> git log --oneline --graph --all --decorate
