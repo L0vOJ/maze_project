@@ -1,0 +1,45 @@
+선택지 있으면 선택지에 있는 매뉴판 출력 
+막다른길이면 해당하는 함수 실행 
+
+case 1:
+case 2:
+case 3:
+case 4:
+case 5:
+	menu(input);
+break;
+case 11:
+case 12:
+case 13:
+case 14:
+	menu1(input);
+break;
+case 21:
+	go21();
+break;
+
+
+case 221:
+case 231:
+case 241:
+~~~~~~~~
+default:
+menu(input)
+switch(input/10){
+	~~~~~~
+
+}
+
+움직임을 허용한다면 presskey_to_change
+허용할 수 없는 움직임이라면 getch()로 마무리 
+
+0 "maze generate","log browse","maze play",snake game","save log"
+2 - 따로 구현 
+3 "new file","open log","open file"
+
+
+
+
+
+weight 0707만 지우고 
+train
