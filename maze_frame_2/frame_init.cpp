@@ -42,7 +42,6 @@ mazeframe::mazeframe(){
   t.hour = lt->tm_hour;
   t.min = lt->tm_min;
   t.sec = lt->tm_sec;
-	width=5;
 	width = width*4+1;
 	mode = 0;
 	field = field_make(field,width);
@@ -59,7 +58,6 @@ mazeframe::mazeframe(int argc,char** argv){
   t.hour = lt->tm_hour;
   t.min = lt->tm_min;
   t.sec = lt->tm_sec;
-	width=5;
 	width = width*4+1;
 	mode = (argc>1)?(strcmp(argv[1],"-w")?0:1):0;
 	field = field_make(field,width);

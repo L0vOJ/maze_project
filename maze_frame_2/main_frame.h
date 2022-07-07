@@ -27,7 +27,7 @@ private:
 	int escape_step;
 	tlog t;
 protected:
-	int width;
+	int width=5;
 	int mode;
 public:
 	mazeframe();
@@ -89,9 +89,9 @@ public:
 class command{	// real time amulate 모듈 // 파일 관리 모듈은 하위로 둔다 { : public data_manage }
 private:
 	char* keybind;
-	//mazeframe* dm;
-	//data_manage* dm;
 	std::vector<mazeframe*> dm;
+	int maxListSize=10;
+	long long Maxval = pow(2,63)/maxListSize;
 public:
 	command();
 	void run();
@@ -100,6 +100,7 @@ public:
 	//void setKeyBind();
 	void log_show();
 	int log_browse();
+	long long presskey_to_change(long long input);
 };
 
 

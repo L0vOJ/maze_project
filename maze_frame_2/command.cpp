@@ -3,6 +3,8 @@
 #include <cstring>
 #include <string>
 #include <functional>
+#include <vector>
+#include <math.h>
 #include "main_frame.h"
 #include "getch.cpp"
 
@@ -26,10 +28,13 @@ int command::keybinding(char key){	//qweasdzxc를 1~9로 바꾼다	//이거 설�
 }
 
 void command::run(){
+	long long cursor = 1;
 	while(true){
 		system("clear");
-		cout<<"1.maze generate"<<endl<<"2.maze solve"<<endl<<"3.maze play"<<endl;
-		this->navigate(keybinding(getch()));
+		//cout<<"1.maze generate"<<endl<<"2.maze solve"<<endl<<"3.maze play"<<endl;
+		cursor = presskey_to_change(cursor);
+		cout<<cursor;
+		//this->navigate(cursor);
 	}
 }
 
@@ -45,6 +50,7 @@ void command::navigate(int input){
 			cout<<"this is 1"<<endl;
 			cout<<"maze_generate"<<endl;
 			mazeframe* m_new = new mazeframe;
+			if(dm.size()>=maxListSize) dm.erase(dm.begin());
 			dm.push_back(m_new);
 			cout<<"press any key to exit"<<endl;
 			getch();
@@ -144,4 +150,22 @@ int command::log_browse(){
 			}break;
 		}
 	}
+}
+
+long long command::presskey_to_change(long long input){	//maxListSize 활용해 정한다
+	switch(keybinding(getch())){
+		case 2:{
+			input = ((input-1)%maxListSize)?input-1:input;
+		}break;
+		case 4:{
+			input = (input/maxListSize)?input/maxListSize:input;
+		}break;
+		case 5:{
+			input = ((input+1)%maxListSize)?input+1:input;
+		}break;
+		case 6:{
+			input = (input<=Maxval)?input*maxListSize+1:input;
+		}break;
+	}
+	return input;
 }
