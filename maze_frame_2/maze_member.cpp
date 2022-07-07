@@ -29,13 +29,18 @@ int mazeframe::get_width(){
 }
 
 void mazeframe::show_timelog(){
-  cout<<t.year<<"-";
-  cout<<(t.month+1)<<"-";
-  cout<<t.day<<" ";
-  cout<<t.hour<<":";
-  cout<<t.min<<":";
-  cout<<t.sec<<endl;
-  //cout<<t<<endl;
+  int arr[6] = {t.year,t.month,t.day,t.hour,t.min,t.sec};
+  char pharsing[6] = {"-- ::"};
+  for(int zz=0;zz<6;zz++){
+    if(arr[zz]<10) cout<<"0";
+    cout<<arr[zz];
+    cout<<pharsing[zz];
+  }
+  cout<<endl;
+}
+
+void fill_zero(int input){
+  if(input<10) cout<<"0";
 }
 
 void mazeframe::field_clear(){

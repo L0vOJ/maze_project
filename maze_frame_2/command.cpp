@@ -2,14 +2,15 @@
 #include <cstdlib>
 #include <cstring>
 #include <string>
+#include <functional>
 #include "main_frame.h"
 #include "getch.cpp"
 
 using namespace std;
 
 command::command(){
-	keybind = new int[9];
-	int arr[9] = {113,119,101,97,115,100,122,120,99};
+	keybind = new char[9];
+	char arr[10] = {"qweasdzxc"};
 	for(int zz=0;zz<9;zz++){
 		keybind[zz] = arr[zz];
 	}
@@ -43,8 +44,8 @@ void command::navigate(int input){
 		case 1:{
 			cout<<"this is 1"<<endl;
 			cout<<"maze_generate"<<endl;
-			mazeframe* mnew = new mazeframe;
-			dm.push_back(mnew);
+			mazeframe* m_new = new mazeframe;
+			dm.push_back(m_new);
 			cout<<"press any key to exit"<<endl;
 			getch();
 		}break;
@@ -79,7 +80,7 @@ void command::navigate(int input){
 		}break;
 		case 6:{
 			cout<<"this is 6"<<endl;
-			dm.at(0)->checkfield();
+			this->log_browse();
 			cout<<"press any key to exit"<<endl;
 			getch();
 		}break;
@@ -115,7 +116,32 @@ void command::navigate(int input){
 
 void command::log_show(){
 	for(int zz=0;zz<dm.size();zz++){
-		cout<<zz<<".";
+		printf("%3d.",zz+1);
 		dm.at(zz)->show_timelog();
+	}
+}
+
+int command::log_browse(){
+	int cursor = 0;
+	while(true){
+		system("clear");
+		for(int zz=0;zz<dm.size();zz++){
+			if(cursor==zz) cout<<"*";
+			printf("\t%d.",zz+1);
+			dm.at(zz)->show_timelog();
+		}
+		switch(keybinding(getch())){
+			case 2:{
+				cursor = cursor?cursor-1:0;
+			}break;
+			case 5:{
+				cursor = (cursor<dm.size()-1)?cursor+1:cursor;
+			}break;
+			case 6:{
+				system("clear");
+				dm.at(cursor)->checkfield();
+				return 0;
+			}break;
+		}
 	}
 }

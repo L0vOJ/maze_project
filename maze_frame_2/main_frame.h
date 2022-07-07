@@ -3,6 +3,7 @@
 
 #include <vector>	
 
+
 typedef struct{
 	int wall;
 	int root;
@@ -87,7 +88,7 @@ public:
 */
 class command{	// real time amulate 모듈 // 파일 관리 모듈은 하위로 둔다 { : public data_manage }
 private:
-	int* keybind;
+	char* keybind;
 	//mazeframe* dm;
 	//data_manage* dm;
 	std::vector<mazeframe*> dm;
@@ -98,6 +99,7 @@ public:
 	int keybinding(char key);
 	//void setKeyBind();
 	void log_show();
+	int log_browse();
 };
 
 
