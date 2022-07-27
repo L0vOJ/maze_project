@@ -6,7 +6,7 @@
 #include <vector>
 #include <math.h>
 #include "main_frame.h"
-#include "getch.cpp"
+#include "../lib/getch.cpp"
 
 using namespace std;
 

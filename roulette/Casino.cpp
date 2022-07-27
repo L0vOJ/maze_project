@@ -47,6 +47,14 @@ int Casino::get_peak(){
     return __peak;
 }
 
+int Casino::get_count(){
+    return __count;
+}
+
+int* Casino::get_sheet1_mag(){
+    return __sheet1.mag;
+}
+
 void Casino::show_chart1(){
     cout<<"---------------------------------------------------------------"<<endl;
     for(int y=0;y<3;y++){

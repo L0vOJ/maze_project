@@ -42,5 +42,7 @@ public:
 	void fund_roulette(int* input);
 	int get_fund();
 	int get_peak();
+	int get_count();
+	int* get_sheet1_mag();
 	void show_chart1();
 };
