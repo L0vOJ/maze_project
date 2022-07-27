@@ -89,19 +89,17 @@ public:
 class command{	// real time amulate 모듈 // 파일 관리 모듈은 하위로 둔다 { : public data_manage }
 private:
 	char* keybind;
-	std::vector<mazeframe*> dm;
-	std::vector<string
-	int maxListSize=10;
-	long long Maxval = pow(2,63)/maxListSize;
+	int _maxListSize=10;
+	long long Maxval = pow(2,63)/_maxListSize;
 public:
 	command();
 	void run();
-	int navigate(int input);
+	long long navigate(long long input);
 	int keybinding(char key);
 	//void setKeyBind();
 	//void log_show();
 	//int log_browse();
-	long long presskey_to_change(long long input);
+	long long presskey_to_change(long long input,int forbidden);
 };
 
 

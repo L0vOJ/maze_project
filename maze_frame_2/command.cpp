@@ -34,7 +34,8 @@ void command::run(){
 		//cout<<"1.maze generate"<<endl<<"2.maze solve"<<endl<<"3.maze play"<<endl;
 		system("clear");
 		cout<<cursor<<endl;
-		cursor = this->navigate(cursor);
+		cursor = this->presskey_to_change(cursor,0);
+		//cursor = this->navigate(cursor);
 	}
 }
 
@@ -64,13 +65,14 @@ long long command::navigate(long long input){
 		case 341:
 		break;
 		default: 
-			return menu(input);
+			//return menu(input);
 		break;
 	}
 	cout<<"press any key to exit"<<endl;
-	return input/maxListSize;
+	return input/_maxListSize;
 }
 
+/*
 long long command::menu(long long input){
 	switch(input/10){
 		case 0:
@@ -87,6 +89,7 @@ long long command::menu(long long input){
 long long command::menulist(long long input){
 	
 }
+*/
 /*
 void command::log_show(){
 	for(int zz=0;zz<dm.size();zz++){
@@ -126,16 +129,16 @@ long long command::presskey_to_change(long long input,int forbidden){	//maxListS
 	else{
 		switch(decision){
 			case 2:{
-				input = ((input-1)%maxListSize)?input-1:input;
+				input = ((input-1)%_maxListSize)?input-1:input;
 			}break;
 			case 4:{
-				input = (input/maxListSize)?input/maxListSize:input;
+				input = (input/_maxListSize)?input/_maxListSize:input;
 			}break;
 			case 5:{
-				input = ((input+1)%maxListSize)?input+1:input;
+				input = ((input+1)%_maxListSize)?input+1:input;
 			}break;
 			case 6:{
-				input = (input<=Maxval)?input*maxListSize+1:input;
+				input = (input<=Maxval)?input*_maxListSize+1:input;
 			}break;
 		}
 	}
