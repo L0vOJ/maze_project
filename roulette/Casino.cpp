@@ -27,7 +27,7 @@ void Casino::__init__(int fund=100){
 void Casino::sheetConfig1(){
     __sheet1.div = 5;
     __sheet1.probList = new int[__sheet1.div]{12,6,4,2,1};
-    __sheet1.mag = new int[__sheet1.div]{2,3,5,10,20};
+    __sheet1.mag = new int[__sheet1.div]{1,3,5,10,20};
     __sheet1.totalProb=0;
     for(int z=0;z<__sheet1.div;z++){
         __sheet1.totalProb+=__sheet1.probList[z];
@@ -109,7 +109,7 @@ void Casino::fund_roulette(int* input){
         __fund-=input[z];
         sum+=__sheet1.probList[z];
 		if(roll<sum && flag){
-            int result=input[z]*__sheet1.mag[z];
+            int result=input[z]*(__sheet1.mag[z]+1);
             __chart1.count[z]++;
             __chart1.earn[z]+=result;
             __fund+=result;
