@@ -25,7 +25,7 @@ void launch1(Casino open){
 
 void launch2(Casino open){
 	int cursor=0;
-	int* input = new int[5]{0,0,0,0,0};
+	int* input = new int[5]{0,0,0,0,0};	
 	while(1){
 		//sleep(1);
 		cursor = modify_slot(input,cursor);
@@ -50,9 +50,6 @@ void launch2(Casino open){
 				else cout<<"\t";
 			}
 		}
-		//getch();
-
-		
 	}
 }
 
